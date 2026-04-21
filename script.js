@@ -1,10 +1,10 @@
 // Mobile Navigation Toggle
 const mobileToggle = document.getElementById('mobileToggle');
-const navMenu = document.getElementById('navMenu');
+const navMenus = document.querySelectorAll('#navMenu, #navMenuLeft, #navMenuRight');
 
-if (mobileToggle) {
+if (mobileToggle && navMenus.length > 0) {
     mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+        navMenus.forEach(menu => menu.classList.toggle('active'));
         mobileToggle.classList.toggle('active');
     });
 }
@@ -12,18 +12,25 @@ if (mobileToggle) {
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
+const isHome = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname.split('/').pop() === '';
+const useOverlayNavbar = isHome || document.body.classList.contains('navbar-overlay');
 
-window.addEventListener('scroll', () => {
+function updateNavbar() {
+    if (!navbar) return;
     const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+    if (!useOverlayNavbar || currentScroll > 50) {
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        navbar.classList.remove('scrolled');
     }
-
     lastScroll = currentScroll;
-});
+}
+
+if (navbar) {
+    window.addEventListener('scroll', updateNavbar);
+    // Run once on load to set initial state
+    updateNavbar();
+}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -36,7 +43,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 block: 'start'
             });
             // Close mobile menu if open
-            navMenu.classList.remove('active');
+            navMenus.forEach(menu => menu.classList.remove('active'));
         }
     });
 });
@@ -238,6 +245,50 @@ if (contactForm) {
     });
 }
 
+// Homepage transfer form -> WhatsApp booking
+const transferBookingForm = document.getElementById('transferBookingForm');
+if (transferBookingForm) {
+    transferBookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (!transferBookingForm.reportValidity()) {
+            return;
+        }
+
+        const pickupLocation = document.getElementById('pickupLocation')?.value.trim() || '';
+        const dropLocation = document.getElementById('dropLocation')?.value.trim() || '';
+        const transferDateRaw = document.getElementById('transferDate')?.value || '';
+        const passengerCount = document.getElementById('passengerCount')?.value.trim() || '';
+
+        let transferDate = transferDateRaw;
+        if (transferDateRaw) {
+            const parsedDate = new Date(`${transferDateRaw}T00:00:00`);
+            if (!Number.isNaN(parsedDate.getTime())) {
+                transferDate = parsedDate.toLocaleDateString('en-LK', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+        }
+
+        const message = [
+            'Hello Mahi Tours, I would like to book a transfer.',
+            `Pickup Location: ${pickupLocation}`,
+            `Drop Location: ${dropLocation}`,
+            `Date: ${transferDate}`,
+            `Number of Passengers: ${passengerCount}`,
+            'Please share the price and availability.'
+        ].join('\n');
+
+        const whatsappUrl = `https://wa.me/94743592570?text=${encodeURIComponent(message)}`;
+        const popup = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        if (!popup) {
+            window.location.href = whatsappUrl;
+        }
+    });
+}
+
 // Gallery filter functionality
 const filterButtons = document.querySelectorAll('.filter-btn');
 const galleryItems = document.querySelectorAll('.gallery-item');
@@ -271,36 +322,71 @@ filterButtons.forEach(button => {
 
 // Image lightbox for gallery
 const galleryImages = document.querySelectorAll('.gallery-item img');
+const galleryCards = document.querySelectorAll('.gallery-item');
 let lightbox = null;
 
-galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-        // Create lightbox if it doesn't exist
-        if (!lightbox) {
-            lightbox = document.createElement('div');
-            lightbox.className = 'lightbox';
-            lightbox.innerHTML = `
+function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    document.body.style.overflow = 'auto';
+}
+
+function ensureLightbox() {
+    if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.setAttribute('role', 'dialog');
+        lightbox.setAttribute('aria-modal', 'true');
+        lightbox.setAttribute('aria-label', 'Image preview');
+        lightbox.innerHTML = `
                 <div class="lightbox-content">
-                    <span class="lightbox-close">&times;</span>
+                    <button class="lightbox-close" type="button" aria-label="Close image preview">&times;</button>
                     <img src="" alt="">
+                    <p class="lightbox-caption"></p>
                 </div>
             `;
-            document.body.appendChild(lightbox);
+        document.body.appendChild(lightbox);
 
-            // Close lightbox on click
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox || e.target.className === 'lightbox-close') {
-                    lightbox.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
+        // Close lightbox on click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.closest('.lightbox-close')) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+                closeLightbox();
+            }
+        });
+    }
+}
+
+function openLightbox(src, altText) {
+    if (!src) return;
+    ensureLightbox();
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    lightboxImg.src = src;
+    lightboxImg.alt = altText || 'Gallery image';
+    lightboxCaption.textContent = altText || 'Gallery moment';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+galleryCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const image = card.querySelector('img');
+        if (image) {
+            openLightbox(image.src, image.alt);
         }
+    });
+});
 
-        // Show lightbox with clicked image
-        const lightboxImg = lightbox.querySelector('img');
-        lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+galleryImages.forEach(img => {
+    img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(img.src, img.alt);
     });
 });
 
@@ -308,56 +394,122 @@ galleryImages.forEach(img => {
 const lightboxStyles = document.createElement('style');
 lightboxStyles.textContent = `
     .lightbox {
-        display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(4, 10, 20, 0.82);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         z-index: 10000;
+        display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 24px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .lightbox.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
     
     .lightbox-content {
         position: relative;
-        max-width: 90%;
-        max-height: 90%;
+        width: min(960px, 92vw);
+        max-height: 92vh;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(12, 25, 44, 0.55);
+        box-shadow: 0 28px 52px rgba(3, 8, 16, 0.6);
+        padding: 14px 14px 12px;
+        transform: translateY(14px) scale(0.98);
+        transition: transform 0.28s ease;
+    }
+
+    .lightbox.open .lightbox-content {
+        transform: translateY(0) scale(1);
     }
     
     .lightbox-content img {
-        max-width: 100%;
-        max-height: 90vh;
-        border-radius: 8px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-height: calc(92vh - 84px);
+        object-fit: contain;
+        border-radius: 12px;
+        display: block;
     }
     
     .lightbox-close {
         position: absolute;
-        top: -40px;
-        right: 0;
-        font-size: 40px;
-        color: white;
+        top: -12px;
+        right: -12px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: rgba(9, 17, 31, 0.88);
+        color: #f5fbff;
+        font-size: 30px;
+        line-height: 1;
         cursor: pointer;
-        transition: 0.3s;
+        display: grid;
+        place-items: center;
+        transition: transform 0.2s ease, background 0.2s ease;
     }
     
     .lightbox-close:hover {
-        color: #06b6d4;
+        transform: scale(1.04);
+        background: rgba(41, 155, 143, 0.9);
+    }
+
+    .lightbox-caption {
+        margin: 8px 2px 0;
+        color: #d8e8f8;
+        font-size: 0.92rem;
+        letter-spacing: 0.03em;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+        .lightbox {
+            padding: 12px;
+        }
+
+        .lightbox-content {
+            width: 100%;
+            padding: 10px 10px 8px;
+            border-radius: 14px;
+        }
+
+        .lightbox-content img {
+            max-height: calc(92vh - 74px);
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            top: -10px;
+            right: -8px;
+            width: 38px;
+            height: 38px;
+            font-size: 26px;
+        }
     }
 `;
 document.head.appendChild(lightboxStyles);
 
 // Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
+const parallaxHero = document.querySelector('.hero.hero-parallax');
+if (parallaxHero) {
+    window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
+        parallaxHero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+}
 
 // MAHI MAPS - INTERACTIVE FEATURES
 document.addEventListener('DOMContentLoaded', function () {
