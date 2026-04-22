@@ -18,6 +18,10 @@
         body.about-page {
             background: #f6f8fc;
             overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
         }
 
         .about-hero-modern {
@@ -492,26 +496,74 @@
             .story-visual .tall {
                 min-height: 250px;
             }
+
+            .about-story,
+            .about-values,
+            .about-trust,
+            .about-faq {
+                padding: 7rem 0 5rem;
+                overflow: hidden;
+                scroll-margin-top: 100px;
+            }
         }
 
         @media (max-width: 768px) {
             .values-grid-modern,
-            .story-stats {
+            .story-stats,
+            .story-visual {
                 grid-template-columns: 1fr;
             }
 
-            .about-hero-inner {
-                padding-top: 5.4rem;
+            .story-visual img {
+                min-height: 220px;
             }
 
-            .about-hero-actions {
+            .story-visual .tall {
+                grid-row: span 1;
+                min-height: 220px;
+            }
+
+            .about-hero-inner {
+                padding-top: 14rem;
+                padding-bottom: 5rem;
+                width: 100%;
+                max-width: 100%;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .about-hero-actions,
+            .about-cta-actions,
+            .story-links {
                 flex-direction: column;
                 align-items: center;
+                gap: 0.8rem;
             }
 
-            .about-hero-actions .hero-ref-btn,
-            .about-cta-actions .hero-ref-btn {
-                width: min(92%, 340px);
+            .hero-ref-btn {
+                width: 100%;
+                max-width: 320px;
+                min-width: 0 !important;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo img {
+                height: 36px !important;
+            }
+
+            .story-text, .faq-side, .faq-list-panel, .trust-copy {
+                padding: 1.25rem;
+            }
+
+            .section-kicker {
+                margin-bottom: 0.6rem;
+            }
+
+            .story-text h2, .values-head h2, .trust-copy h2, .faq-side h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -824,6 +876,31 @@
     <a href="https://wa.me/94743592570" class="whatsapp-float" target="_blank">
         <span class="whatsapp-icon"><i class="fas fa-comment-dots"></i></span>
     </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">MAHI MAPS</div>
+            <button class="mobile-close" id="mobileClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-body">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="vehicles.html">VEHICLES</a></li>
+                <li><a href="tours.html">TOURS</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <a href="vehicles.html#booking" class="mobile-book-btn">BOOK NOW</a>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="footer-brand">Mahi Maps Tours</div>
+            <p>EXPLORING SRI LANKA</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

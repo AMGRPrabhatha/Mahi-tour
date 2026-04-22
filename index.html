@@ -226,6 +226,10 @@
             gap: 1rem;
         }
 
+        .routes-nav-mobile {
+            display: none;
+        }
+
         .route-card {
             border-radius: 20px;
             overflow: hidden;
@@ -369,62 +373,123 @@
         .fleet-grid-home {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.85rem;
+            gap: 1rem;
         }
 
         .fleet-card-home {
-            background: var(--home-card);
+            background: #fff;
             border: 1px solid var(--home-border);
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 22px rgba(15, 32, 53, 0.08);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 30px rgba(15, 32, 53, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
         }
 
         .fleet-card-home:hover {
             transform: translateY(-5px);
-            box-shadow: 0 16px 28px rgba(15, 32, 53, 0.12);
+            box-shadow: 0 20px 40px rgba(15, 32, 53, 0.1);
         }
 
-        .fleet-card-home img {
+        .fleet-img-box {
             width: 100%;
-            height: 188px;
-            object-fit: cover;
+            height: 180px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
         }
 
-        .fleet-card-content {
-            padding: 0.92rem;
+        .fleet-img-box img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        .fleet-card-content h3 {
-            font-size: 1.05rem;
-            color: #102238;
-            margin-bottom: 0.2rem;
+        .fleet-card-body {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
         }
 
-        .fleet-card-content p {
-            color: var(--home-muted);
-            font-size: 0.9rem;
-            margin-bottom: 0.66rem;
-        }
-
-        .fleet-specs {
+        .fleet-title-row {
             display: flex;
             justify-content: space-between;
-            gap: 0.5rem;
-            font-size: 0.82rem;
-            color: #24384f;
-        }
-
-        .fleet-specs span {
-            display: inline-flex;
             align-items: center;
-            gap: 0.28rem;
-            font-weight: 600;
+            margin-bottom: 0.8rem;
         }
 
-        .fleet-specs i {
-            color: var(--home-teal-dark);
+        .fleet-title-row h3 {
+            font-size: 1.2rem;
+            color: #102238;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .fleet-badge {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .fleet-badge.compact { background: #e6fffa; color: #2c7a7b; }
+        .fleet-badge.popular { background: #ebf8ff; color: #2b6cb0; }
+        .fleet-badge.value { background: #fff5f5; color: #c53030; }
+        .fleet-badge.premium { background: #faf5ff; color: #6b46c1; }
+
+        .fleet-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .fleet-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4a5568;
+            background: #f7fafc;
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            white-space: nowrap;
+        }
+
+        .fleet-summary {
+            font-size: 0.85rem;
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .fleet-reserve-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1.5px solid #2d8f86;
+            color: #2d8f86;
+            text-align: center;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .fleet-reserve-btn:hover {
+            background: #2d8f86;
+            color: #fff;
         }
 
         .workflow-grid {
@@ -815,9 +880,72 @@
             }
 
             .metrics-grid,
-            .transfer-grid,
-            .why-choose-grid {
+            .transfer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .why-choose-grid,
+            .popular-transfers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.65rem;
+            }
+
+            .fleet-grid-home {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.65rem;
+                padding: 0;
+            }
+
+            .fleet-img-box {
+                height: 90px;
+                padding: 0.4rem;
+            }
+
+            .fleet-card-body {
+                padding: 0.75rem 0.6rem;
+            }
+
+            .fleet-title-row {
+                margin-bottom: 0.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .fleet-title-row h3 {
+                font-size: 0.9rem;
+            }
+
+            .fleet-badge {
+                font-size: 0.52rem;
+                padding: 2px 6px;
+            }
+
+            .fleet-tags {
+                gap: 0.25rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .fleet-tag {
+                font-size: 0.62rem;
+                padding: 3px 6px;
+                border-radius: 5px;
+            }
+
+            .fleet-summary {
+                font-size: 0.72rem;
+                margin-bottom: 0.8rem;
+                line-height: 1.4;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .fleet-reserve-btn {
+                font-size: 0.78rem;
+                padding: 7px;
+                border-radius: 8px;
             }
 
             .top-metrics {
@@ -835,8 +963,90 @@
                 padding: 1rem;
             }
 
-            .popular-transfers-grid {
-                grid-template-columns: 1fr;
+            .why-choose-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 0.85rem 0.6rem;
+                font-size: 0.78rem;
+                justify-content: center;
+                height: 100%;
+            }
+
+            .why-choose-item i {
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+                margin-top: 0;
+            }
+
+            .popular-transfer-card {
+                padding: 0.75rem 0.6rem;
+                font-size: 0.72rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.4rem;
+                justify-content: center;
+            }
+
+            .popular-transfer-card i {
+                font-size: 1.1rem;
+            }
+
+            /* Signature Journeys Slider */
+            .routes-slider-wrapper {
+                position: relative;
+                margin: 0 -1rem; /* negative margin to bleed to edges */
+                padding: 0 1rem;
+            }
+
+            .routes-grid {
+                display: flex !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                padding: 0.5rem 0 1.5rem;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                grid-template-columns: none !important; /* disable grid */
+            }
+
+            .routes-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .route-card {
+                flex: 0 0 85%;
+                min-width: 280px;
+                scroll-snap-align: center;
+                min-height: 400px;
+            }
+
+            .routes-nav-mobile {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-top: 0.2rem;
+            }
+
+            .slider-btn {
+                width: 46px;
+                height: 46px;
+                border-radius: 50%;
+                background: #fff;
+                border: 1px solid var(--home-border);
+                color: #2d8f86;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 6px 16px rgba(15, 32, 53, 0.12);
+                cursor: pointer;
+                font-size: 1.1rem;
+                transition: all 0.2s ease;
+            }
+
+            .slider-btn:active {
+                transform: scale(0.9);
+                background: #f8fbff;
             }
         }
     </style>
@@ -910,31 +1120,37 @@
                     <p>Our most requested experiences combine scenic roads, cultural highlights, and flexible timing so you can explore without rushing.</p>
                 </div>
 
-                <div class="routes-grid">
-                    <a href="tours.html#cultural-triangle" class="route-card service-card">
-                        <img src="assets/images/sigiriya-fortress.png" alt="Cultural Triangle">
-                        <div class="route-card-body">
-                            <h3>Cultural Triangle</h3>
-                            <p>Ancient cities, temple heritage, and iconic Sigiriya in one seamless route.</p>
-                            <span class="route-meta"><i class="fas fa-clock"></i> 5-7 Days</span>
-                        </div>
-                    </a>
-                    <a href="tours.html#hill-country" class="route-card service-card">
-                        <img src="assets/images/ella-nine-arch.png" alt="Hill Country">
-                        <div class="route-card-body">
-                            <h3>Hill Country Escape</h3>
-                            <p>Tea plantations, mountain views, waterfalls, and cool-climate train routes.</p>
-                            <span class="route-meta"><i class="fas fa-clock"></i> 3-5 Days</span>
-                        </div>
-                    </a>
-                    <a href="tours.html#beach-coastal" class="route-card service-card">
-                        <img src="assets/images/mirissa-beach.png" alt="Coastal Tour">
-                        <div class="route-card-body">
-                            <h3>Southern Coastline</h3>
-                            <p>Beach mornings, fort walks, and relaxed sunset drives along the south coast.</p>
-                            <span class="route-meta"><i class="fas fa-clock"></i> 2-4 Days</span>
-                        </div>
-                    </a>
+                <div class="routes-slider-wrapper">
+                    <div class="routes-grid" id="routesSlider">
+                        <a href="tours.html#cultural-triangle" class="route-card service-card">
+                            <img src="assets/images/sigiriya-fortress.png" alt="Cultural Triangle">
+                            <div class="route-card-body">
+                                <h3>Cultural Triangle</h3>
+                                <p>Ancient cities, temple heritage, and iconic Sigiriya in one seamless route.</p>
+                                <span class="route-meta"><i class="fas fa-clock"></i> 5-7 Days</span>
+                            </div>
+                        </a>
+                        <a href="tours.html#hill-country" class="route-card service-card">
+                            <img src="assets/images/ella-nine-arch.png" alt="Hill Country">
+                            <div class="route-card-body">
+                                <h3>Hill Country Escape</h3>
+                                <p>Tea plantations, mountain views, waterfalls, and cool-climate train routes.</p>
+                                <span class="route-meta"><i class="fas fa-clock"></i> 3-5 Days</span>
+                            </div>
+                        </a>
+                        <a href="tours.html#beach-coastal" class="route-card service-card">
+                            <img src="assets/images/mirissa-beach.png" alt="Coastal Tour">
+                            <div class="route-card-body">
+                                <h3>Southern Coastline</h3>
+                                <p>Beach mornings, fort walks, and relaxed sunset drives along the south coast.</p>
+                                <span class="route-meta"><i class="fas fa-clock"></i> 2-4 Days</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-nav routes-nav-mobile">
+                        <button class="slider-btn prev" id="routesPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next" id="routesNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -984,52 +1200,83 @@
                 </div>
 
                 <div class="fleet-grid-home">
-                    <article class="fleet-card-home fleet-card">
-                        <img src="assets/images/mini-car.jpg" alt="Mini Car">
-                        <div class="fleet-card-content">
-                            <h3>Mini Car</h3>
-                            <p>Ideal for solo and couples</p>
-                            <div class="fleet-specs">
-                                <span><i class="fas fa-users"></i>2 Pax</span>
-                                <span><i class="fas fa-suitcase"></i>2 Bags</span>
-                                <span><i class="fas fa-snowflake"></i>AC</span>
+                    <article class="fleet-card-home">
+                        <div class="fleet-img-box">
+                            <img src="assets/images/mini-car.jpg" alt="Mini Car">
+                        </div>
+                        <div class="fleet-card-body">
+                            <div class="fleet-title-row">
+                                <h3>Mini Car</h3>
+                                <span class="fleet-badge compact">COMPACT</span>
                             </div>
+                            <div class="fleet-tags">
+                                <span class="fleet-tag">2-3 Pax</span>
+                                <span class="fleet-tag">2 Bags</span>
+                                <span class="fleet-tag">AC</span>
+                                <span class="fleet-tag">Economy</span>
+                            </div>
+                            <p class="fleet-summary">Best for solo travelers and couples. Efficient city and short-distance drives.</p>
+                            <a href="vehicles.html#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                         </div>
                     </article>
-                    <article class="fleet-card-home fleet-card">
-                        <img src="assets/images/sedan.jpg" alt="Sedan">
-                        <div class="fleet-card-content">
-                            <h3>Sedan</h3>
-                            <p>Comfort for small families</p>
-                            <div class="fleet-specs">
-                                <span><i class="fas fa-users"></i>4 Pax</span>
-                                <span><i class="fas fa-suitcase"></i>3 Bags</span>
-                                <span><i class="fas fa-snowflake"></i>AC</span>
+
+                    <article class="fleet-card-home">
+                        <div class="fleet-img-box">
+                            <img src="assets/images/sedan.jpg" alt="Sedan">
+                        </div>
+                        <div class="fleet-card-body">
+                            <div class="fleet-title-row">
+                                <h3>Sedan</h3>
+                                <span class="fleet-badge popular">POPULAR</span>
                             </div>
+                            <div class="fleet-tags">
+                                <span class="fleet-tag">3-4 Pax</span>
+                                <span class="fleet-tag">3 Bags</span>
+                                <span class="fleet-tag">AC</span>
+                                <span class="fleet-tag">Premium Seats</span>
+                            </div>
+                            <p class="fleet-summary">Perfect for couples and small families. Balanced comfort and value for tours.</p>
+                            <a href="vehicles.html#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                         </div>
                     </article>
-                    <article class="fleet-card-home fleet-card">
-                        <img src="assets/images/mini-van.jpg" alt="Mini Van">
-                        <div class="fleet-card-content">
-                            <h3>Mini Van</h3>
-                            <p>Spacious for medium groups</p>
-                            <div class="fleet-specs">
-                                <span><i class="fas fa-users"></i>7 Pax</span>
-                                <span><i class="fas fa-suitcase"></i>5 Bags</span>
-                                <span><i class="fas fa-snowflake"></i>AC</span>
+
+                    <article class="fleet-card-home">
+                        <div class="fleet-img-box">
+                            <img src="assets/images/mini-van.jpg" alt="Mini Van">
+                        </div>
+                        <div class="fleet-card-body">
+                            <div class="fleet-title-row">
+                                <h3>Mini Van</h3>
+                                <span class="fleet-badge value">BEST VALUE</span>
                             </div>
+                            <div class="fleet-tags">
+                                <span class="fleet-tag">5-7 Pax</span>
+                                <span class="fleet-tag">5 Bags</span>
+                                <span class="fleet-tag">AC</span>
+                                <span class="fleet-tag">Extra Space</span>
+                            </div>
+                            <p class="fleet-summary">Ideal for families and small groups with extra luggage, comfort, and safety.</p>
+                            <a href="vehicles.html#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                         </div>
                     </article>
-                    <article class="fleet-card-home fleet-card">
-                        <img src="assets/images/high-roof.jpg" alt="High Roof Van">
-                        <div class="fleet-card-content">
-                            <h3>High Roof Van</h3>
-                            <p>Best for large travel groups</p>
-                            <div class="fleet-specs">
-                                <span><i class="fas fa-users"></i>12 Pax</span>
-                                <span><i class="fas fa-suitcase"></i>8 Bags</span>
-                                <span><i class="fas fa-snowflake"></i>AC</span>
+
+                    <article class="fleet-card-home">
+                        <div class="fleet-img-box">
+                            <img src="assets/images/high-roof.jpg" alt="High Roof Van">
+                        </div>
+                        <div class="fleet-card-body">
+                            <div class="fleet-title-row">
+                                <h3>High Roof Van</h3>
+                                <span class="fleet-badge premium">PREMIUM</span>
                             </div>
+                            <div class="fleet-tags">
+                                <span class="fleet-tag">8-12 Pax</span>
+                                <span class="fleet-tag">8+ Bags</span>
+                                <span class="fleet-tag">Dual AC</span>
+                                <span class="fleet-tag">Long Trips</span>
+                            </div>
+                            <p class="fleet-summary">Large group comfort with generous room and smooth touring islandwide.</p>
+                            <a href="vehicles.html#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                         </div>
                     </article>
                 </div>
@@ -1226,6 +1473,31 @@
         <a href="https://wa.me/94743592570" class="whatsapp-float" target="_blank">
             <span class="whatsapp-icon"><i class="fas fa-comment-dots"></i></span>
         </a>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-header">
+                <div class="mobile-logo">MAHI MAPS</div>
+                <button class="mobile-close" id="mobileClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-body">
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li><a href="vehicles.html">VEHICLES</a></li>
+                    <li><a href="tours.html">TOURS</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+                <a href="vehicles.html#booking" class="mobile-book-btn">BOOK NOW</a>
+            </div>
+            <div class="mobile-menu-footer">
+                <div class="footer-brand">Mahi Maps Tours</div>
+                <p>EXPLORING SRI LANKA</p>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

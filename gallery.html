@@ -340,35 +340,72 @@
             }
 
             .gallery-main {
-                padding: 2.6rem 0 3.4rem;
+                padding: 2rem 0 3rem;
             }
 
             .gallery-main .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding-left: 0.85rem;
+                padding-right: 0.85rem;
             }
 
             .gallery-toolbar {
-                top: 80px;
+                top: 76px;
+                padding: 0.65rem;
+                margin-bottom: 1.1rem;
+                border-radius: 16px;
+            }
+
+            .gallery-filters {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0.15rem 0.15rem 0.45rem;
+                gap: 0.55rem;
+                justify-content: flex-start;
+                scrollbar-width: none;
+            }
+
+            .gallery-filters::-webkit-scrollbar {
+                display: none;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.75rem;
+                white-space: nowrap;
+                flex-shrink: 0;
             }
 
             .gallery-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 0.65rem;
+                gap: 0.6rem;
             }
 
             .gallery-item {
-                aspect-ratio: 1 / 1.04;
+                aspect-ratio: 1 / 1.1;
+                border-radius: 14px;
+            }
+
+            .gallery-item::after {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.5rem;
+                top: 0.5rem;
+                left: 0.5rem;
             }
 
             .gallery-mini-stats {
                 grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
         }
 
-        @media (max-width: 560px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
+        @media (max-width: 480px) {
+            .gallery-hero {
+                height: 70vh;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -423,6 +460,16 @@
 
     <section class="gallery-main" id="gallery-grid">
         <div class="container">
+            <div class="gallery-toolbar">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="destinations">Destinations</button>
+                    <button class="filter-btn" data-filter="mahi-maps">Mahi Maps</button>
+                    <button class="filter-btn" data-filter="tours">Tours</button>
+                    <button class="filter-btn" data-filter="travelers">Happy Travels</button>
+                </div>
+            </div>
+
             <div class="gallery-intro-modern">
                 <p class="gallery-label">Captured Moments</p>
                 <div class="gallery-headline">
@@ -448,15 +495,6 @@
                 </div>
             </div>
 
-            <div class="gallery-toolbar">
-            <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="destinations">Destinations</button>
-                <button class="filter-btn" data-filter="mahi-maps">Mahi Maps</button>
-                <button class="filter-btn" data-filter="tours">Tours</button>
-                <button class="filter-btn" data-filter="travelers">Happy Travels</button>
-            </div>
-            </div>
 
             <!-- Gallery Grid -->
             <div class="gallery-grid">
@@ -755,6 +793,31 @@
     <a href="https://wa.me/94743592570" class="whatsapp-float" target="_blank">
         <span class="whatsapp-icon">💬</span>
     </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">MAHI MAPS</div>
+            <button class="mobile-close" id="mobileClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-body">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="vehicles.html">VEHICLES</a></li>
+                <li><a href="tours.html">TOURS</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <a href="vehicles.html#booking" class="mobile-book-btn">BOOK NOW</a>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="footer-brand">Mahi Maps Tours</div>
+            <p>EXPLORING SRI LANKA</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

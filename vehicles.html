@@ -201,96 +201,117 @@
 
         .fleet-card-modern {
             background: #fff;
-            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid #e7e9ef;
-            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(15, 32, 53, 0.05);
             display: flex;
             flex-direction: column;
+            transition: all 0.3s ease;
         }
 
         .fleet-card-modern:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(15, 32, 53, 0.1);
         }
 
-        .fleet-card-modern img {
+        .fleet-img-box {
             width: 100%;
-            aspect-ratio: 16/10;
-            object-fit: cover;
+            height: 180px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
         }
 
-        .fleet-card-content {
-            padding: 1rem 1rem 1.15rem;
-            display: grid;
-            gap: 0.7rem;
-            flex: 1;
+        .fleet-img-box img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        .fleet-card-title {
+        .fleet-card-body {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .fleet-title-row {
             display: flex;
             justify-content: space-between;
-            gap: 0.8rem;
-            align-items: flex-start;
+            align-items: center;
+            margin-bottom: 0.8rem;
         }
 
-        .fleet-card-title h3 {
-            font-size: 1.25rem;
-            color: #0f172a;
-        }
-
-        .fleet-chip {
-            font-size: 0.7rem;
-            padding: 0.3rem 0.62rem;
-            border-radius: 999px;
-            background: #e6fffb;
-            color: #0f766e;
+        .fleet-title-row h3 {
+            font-size: 1.2rem;
+            color: #102238;
+            margin: 0;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
+        }
+
+        .fleet-badge {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.05em;
             white-space: nowrap;
         }
 
-        .fleet-meta {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+        .fleet-badge.compact { background: #e6fffa; color: #2c7a7b; }
+        .fleet-badge.popular { background: #ebf8ff; color: #2b6cb0; }
+        .fleet-badge.value { background: #fff5f5; color: #c53030; }
+        .fleet-badge.premium { background: #faf5ff; color: #6b46c1; }
+
+        .fleet-tags {
+            display: flex;
+            flex-wrap: wrap;
             gap: 0.4rem;
-            font-size: 0.84rem;
-            color: #334155;
+            margin-bottom: 1rem;
         }
 
-        .fleet-meta span {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 0.5rem;
-            text-align: center;
+        .fleet-tag {
+            font-size: 0.75rem;
             font-weight: 600;
+            color: #4a5568;
+            background: #f7fafc;
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            white-space: nowrap;
         }
 
-        .fleet-card-modern p {
-            color: #475569;
-            font-size: 0.92rem;
+        .fleet-summary {
+            font-size: 0.85rem;
+            color: #718096;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
-        .fleet-book-btn {
-            margin-top: auto;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
+        .fleet-reserve-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1.5px solid #2d8f86;
+            color: #2d8f86;
+            text-align: center;
             border-radius: 12px;
-            border: 1px solid #2b8a82;
-            background: #f4fffd;
-            color: #175e58;
+            font-size: 0.95rem;
             font-weight: 700;
-            padding: 0.72rem 0.9rem;
-            transition: all 0.25s ease;
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
 
-        .fleet-book-btn:hover {
-            background: #2b8a82;
+        .fleet-reserve-btn:hover {
+            background: #2d8f86;
             color: #fff;
         }
 
@@ -590,7 +611,75 @@
             }
 
             .fleet-grid-modern {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.65rem;
+            }
+
+            .fleet-img-box {
+                height: 90px;
+                padding: 0.4rem;
+            }
+
+            .fleet-card-body {
+                padding: 0.75rem 0.6rem;
+            }
+
+            .fleet-title-row {
+                margin-bottom: 0.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .fleet-title-row h3 {
+                font-size: 0.9rem;
+            }
+
+            .fleet-badge {
+                font-size: 0.52rem;
+                padding: 2px 6px;
+            }
+
+            .fleet-tags {
+                gap: 0.25rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .fleet-tag {
+                font-size: 0.62rem;
+                padding: 3px 6px;
+                border-radius: 5px;
+            }
+
+            .fleet-summary {
+                font-size: 0.72rem;
+                margin-bottom: 0.8rem;
+                line-height: 1.4;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .fleet-reserve-btn {
+                font-size: 0.78rem;
+                padding: 7px;
+                border-radius: 8px;
+            }
+
+            .fleet-card-modern p {
+                font-size: 0.82rem;
+                line-height: 1.5;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .fleet-book-btn {
+                padding: 0.6rem 0.4rem;
+                font-size: 0.8rem;
+                border-radius: 10px;
             }
 
             .form-grid-modern {
@@ -673,74 +762,82 @@
 
             <div class="fleet-grid-modern">
                 <article class="fleet-card-modern">
-                    <img src="assets/images/mini-car.jpg" alt="Mini Car">
-                    <div class="fleet-card-content">
-                        <div class="fleet-card-title">
+                    <div class="fleet-img-box">
+                        <img src="assets/images/mini-car.jpg" alt="Mini Car">
+                    </div>
+                    <div class="fleet-card-body">
+                        <div class="fleet-title-row">
                             <h3>Mini Car</h3>
-                            <span class="fleet-chip">Compact</span>
+                            <span class="fleet-badge compact">COMPACT</span>
                         </div>
-                        <div class="fleet-meta">
-                            <span>2-3 Pax</span>
-                            <span>2 Bags</span>
-                            <span>AC</span>
-                            <span>Economy</span>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">2-3 Pax</span>
+                            <span class="fleet-tag">2 Bags</span>
+                            <span class="fleet-tag">AC</span>
+                            <span class="fleet-tag">Economy</span>
                         </div>
-                        <p>Best for solo travelers and couples. Efficient city and short-distance touring with comfort.</p>
-                        <a class="fleet-book-btn" href="#booking">Reserve This Vehicle</a>
+                        <p class="fleet-summary">Best for solo travelers and couples. Efficient city and short-distance drives.</p>
+                        <a href="#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                     </div>
                 </article>
 
                 <article class="fleet-card-modern">
-                    <img src="assets/images/sedan.jpg" alt="Sedan">
-                    <div class="fleet-card-content">
-                        <div class="fleet-card-title">
+                    <div class="fleet-img-box">
+                        <img src="assets/images/sedan.jpg" alt="Sedan">
+                    </div>
+                    <div class="fleet-card-body">
+                        <div class="fleet-title-row">
                             <h3>Sedan</h3>
-                            <span class="fleet-chip">Popular</span>
+                            <span class="fleet-badge popular">POPULAR</span>
                         </div>
-                        <div class="fleet-meta">
-                            <span>3-4 Pax</span>
-                            <span>3 Bags</span>
-                            <span>AC</span>
-                            <span>Premium Seats</span>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">3-4 Pax</span>
+                            <span class="fleet-tag">3 Bags</span>
+                            <span class="fleet-tag">AC</span>
+                            <span class="fleet-tag">Premium Seats</span>
                         </div>
-                        <p>Perfect for couples and small families. Balanced comfort and value for round tours.</p>
-                        <a class="fleet-book-btn" href="#booking">Reserve This Vehicle</a>
+                        <p class="fleet-summary">Perfect for couples and small families. Balanced comfort and value for round tours.</p>
+                        <a href="#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                     </div>
                 </article>
 
                 <article class="fleet-card-modern">
-                    <img src="assets/images/mini-van.jpg" alt="Mini Van">
-                    <div class="fleet-card-content">
-                        <div class="fleet-card-title">
+                    <div class="fleet-img-box">
+                        <img src="assets/images/mini-van.jpg" alt="Mini Van">
+                    </div>
+                    <div class="fleet-card-body">
+                        <div class="fleet-title-row">
                             <h3>Mini Van</h3>
-                            <span class="fleet-chip">Best Value</span>
+                            <span class="fleet-badge value">BEST VALUE</span>
                         </div>
-                        <div class="fleet-meta">
-                            <span>5-7 Pax</span>
-                            <span>5 Bags</span>
-                            <span>AC</span>
-                            <span>Extra Space</span>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">5-7 Pax</span>
+                            <span class="fleet-tag">5 Bags</span>
+                            <span class="fleet-tag">AC</span>
+                            <span class="fleet-tag">Extra Space</span>
                         </div>
-                        <p>Ideal for families and small groups with extra luggage, comfort, and scenic rides.</p>
-                        <a class="fleet-book-btn" href="#booking">Reserve This Vehicle</a>
+                        <p class="fleet-summary">Ideal for families and small groups with extra luggage, comfort, and scenic rides.</p>
+                        <a href="#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                     </div>
                 </article>
 
                 <article class="fleet-card-modern">
-                    <img src="assets/images/high-roof.jpg" alt="High Roof Van">
-                    <div class="fleet-card-content">
-                        <div class="fleet-card-title">
+                    <div class="fleet-img-box">
+                        <img src="assets/images/high-roof.jpg" alt="High Roof Van">
+                    </div>
+                    <div class="fleet-card-body">
+                        <div class="fleet-title-row">
                             <h3>High Roof Van</h3>
-                            <span class="fleet-chip">Premium</span>
+                            <span class="fleet-badge premium">PREMIUM</span>
                         </div>
-                        <div class="fleet-meta">
-                            <span>8-12 Pax</span>
-                            <span>8+ Bags</span>
-                            <span>Dual AC</span>
-                            <span>Long Trips</span>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">8-12 Pax</span>
+                            <span class="fleet-tag">8+ Bags</span>
+                            <span class="fleet-tag">Dual AC</span>
+                            <span class="fleet-tag">Long Trips</span>
                         </div>
-                        <p>Large group comfort with generous room and smooth touring across long routes.</p>
-                        <a class="fleet-book-btn" href="#booking">Reserve This Vehicle</a>
+                        <p class="fleet-summary">Large group comfort with generous room and smooth touring across long routes.</p>
+                        <a href="#booking" class="fleet-reserve-btn">Reserve This Vehicle</a>
                     </div>
                 </article>
             </div>
@@ -948,6 +1045,31 @@
     <a href="https://wa.me/94743592570" class="whatsapp-float" target="_blank">
         <span class="whatsapp-icon"><i class="fas fa-comment-dots"></i></span>
     </a>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">MAHI MAPS</div>
+            <button class="mobile-close" id="mobileClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-body">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="vehicles.html">VEHICLES</a></li>
+                <li><a href="tours.html">TOURS</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <a href="vehicles.html#booking" class="mobile-book-btn">BOOK NOW</a>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="footer-brand">Mahi Maps Tours</div>
+            <p>EXPLORING SRI LANKA</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 

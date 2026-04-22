@@ -1,13 +1,37 @@
-// Mobile Navigation Toggle
+// Mobile Navigation Redesign Logic
 const mobileToggle = document.getElementById('mobileToggle');
-const navMenus = document.querySelectorAll('#navMenu, #navMenuLeft, #navMenuRight');
+const mobileClose = document.getElementById('mobileClose');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-book-btn');
 
-if (mobileToggle && navMenus.length > 0) {
-    mobileToggle.addEventListener('click', () => {
-        navMenus.forEach(menu => menu.classList.toggle('active'));
-        mobileToggle.classList.toggle('active');
-    });
+function openMobileMenu() {
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.add('active');
+        document.body.classList.add('menu-open');
+        document.body.style.overflow = 'hidden';
+    }
 }
+
+function closeMobileMenu() {
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        document.body.style.overflow = '';
+    }
+}
+
+if (mobileToggle) {
+    mobileToggle.addEventListener('click', openMobileMenu);
+}
+
+if (mobileClose) {
+    mobileClose.addEventListener('click', closeMobileMenu);
+}
+
+// Close menu when clicking a link
+mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
 
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
@@ -665,3 +689,22 @@ function closeDestModalOutside(event, modalId) {
         closeDestModal(modalId);
     }
 }
+// ===================================
+// ROUTES SLIDER (MOBILE)
+// ===================================
+document.addEventListener('DOMContentLoaded', function () {
+    const routesSlider = document.getElementById('routesSlider');
+    const routesPrev = document.getElementById('routesPrev');
+    const routesNext = document.getElementById('routesNext');
+
+    if (routesSlider && routesPrev && routesNext) {
+        routesNext.addEventListener('click', () => {
+            const cardWidth = routesSlider.querySelector('.route-card')?.offsetWidth || 300;
+            routesSlider.scrollBy({ left: cardWidth + 16, behavior: 'smooth' });
+        });
+        routesPrev.addEventListener('click', () => {
+            const cardWidth = routesSlider.querySelector('.route-card')?.offsetWidth || 300;
+            routesSlider.scrollBy({ left: -(cardWidth + 16), behavior: 'smooth' });
+        });
+    }
+});
