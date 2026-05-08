@@ -223,18 +223,15 @@ Locations:
             ]
         };
 
-        // Send email asynchronously (Fire-and-Forget)
-        transporter.sendMail(mailOptions).then(info => {
-            console.log('✅ Email sent successfully:', info.messageId);
-        }).catch(error => {
-            console.error('❌ Error sending email:', error);
-        });
+        // Send email (Must await in Serverless environments like Vercel)
+        const info = await transporter.sendMail(mailOptions);
+        console.log('✅ Email sent successfully:', info.messageId);
 
-        // Return success immediately to client
+        // Return success to client
         res.status(200).json({
             success: true,
             message: 'Booking request sent successfully! We will contact you soon.',
-            messageId: 'pending'
+            messageId: info.messageId
         });
 
     } catch (error) {
@@ -252,8 +249,13 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'Server is running' });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
-    console.log(`📧 Email service configured for: ${process.env.EMAIL_USER || 'Not configured'}`);
-});
+// Start server (Only if not running in Vercel Serverless environment)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server is running on http://localhost:${PORT}`);
+        console.log(`📧 Email service configured for: ${process.env.EMAIL_USER || 'Not configured'}`);
+    });
+}
+
+// Export the app for Vercel Serverless Functions
+module.exports = app;
