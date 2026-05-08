@@ -140,84 +140,77 @@
         .top-metrics {
             position: relative;
             z-index: 5;
-            margin-top: -42px;
+            margin-top: -36px;
         }
 
         .top-metrics .container {
-            background: rgba(7, 16, 31, 0.95);
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            padding: 0.9rem;
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem;
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
         }
 
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.6rem;
+            gap: 1.5rem;
         }
 
         .metric-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 0.9rem 0.75rem;
             text-align: center;
-            color: #e6edf5;
+            color: #334155;
+            padding: 0.5rem;
         }
 
         .metric-item strong {
             display: block;
-            font-size: 1.4rem;
-            color: #9de9df;
-            margin-bottom: 0.15rem;
+            font-size: 1.75rem;
+            color: var(--home-teal-dark);
+            margin-bottom: 0.25rem;
+            font-weight: 800;
         }
 
         .metric-item span {
-            font-size: 0.78rem;
-            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: #c6d3e0;
+            color: #64748b;
             font-weight: 600;
         }
 
         .home-section {
-            padding: 4.2rem 0;
+            padding: 5.5rem 0;
         }
 
-        .home-shell .kicker {
-            color: #248f85;
+        .home-shell .kicker,
+        .section-head-home .kicker {
+            color: var(--home-teal);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.16em;
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.18em;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
         }
 
         .section-head-home {
             max-width: 760px;
-            margin-bottom: 1.6rem;
-        }
-
-        .section-head-home .kicker {
-            color: #248f85;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 2rem;
         }
 
         .section-head-home h2 {
-            font-size: clamp(1.8rem, 4.1vw, 3rem);
-            line-height: 1.12;
-            color: #0f2035;
-            margin-bottom: 0.65rem;
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            line-height: 1.15;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .section-head-home p {
-            color: var(--home-muted);
-            line-height: 1.74;
-            font-size: 1.02rem;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
         .routes-grid {
@@ -231,19 +224,19 @@
         }
 
         .route-card {
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             position: relative;
-            min-height: 370px;
+            min-height: 380px;
             text-decoration: none;
             color: #fff;
-            box-shadow: 0 18px 30px rgba(15, 32, 53, 0.16);
-            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            transition: all 0.3s ease;
         }
 
         .route-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 36px rgba(15, 32, 53, 0.22);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
         }
 
         .route-card img {
@@ -252,46 +245,56 @@
             object-fit: cover;
             position: absolute;
             inset: 0;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .route-card:hover img {
+            transform: scale(1.08);
         }
 
         .route-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(7, 16, 31, 0.05) 20%, rgba(7, 16, 31, 0.83) 100%);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 0) 100%);
+            z-index: 1;
         }
 
         .route-card-body {
             position: absolute;
-            left: 1.05rem;
-            right: 1.05rem;
-            bottom: 1rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            bottom: 1.5rem;
             z-index: 2;
         }
 
         .route-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
         }
 
         .route-card p {
             font-size: 0.95rem;
-            color: rgba(241, 246, 250, 0.92);
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
+            color: rgba(241, 245, 249, 0.9);
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         .route-meta {
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
-            padding: 0.4rem 0.7rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.36);
+            gap: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 0.75rem;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .experience-band {
@@ -378,28 +381,27 @@
 
         .fleet-card-home {
             background: #fff;
-            border: 1px solid var(--home-border);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(15, 32, 53, 0.05);
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;
         }
 
         .fleet-card-home:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(15, 32, 53, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
         }
 
         .fleet-img-box {
             width: 100%;
-            height: 180px;
-            background: #fff;
+            height: 190px;
+            background: #f8fafc;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 1.5rem;
             position: relative;
         }
 
@@ -407,11 +409,15 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
+        }
+        
+        .fleet-card-home:hover .fleet-img-box img {
+            transform: scale(1.05);
         }
 
         .fleet-card-body {
-            padding: 1.25rem;
+            padding: 1.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -422,12 +428,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .fleet-title-row h3 {
-            font-size: 1.2rem;
-            color: #102238;
+            font-size: 1.25rem;
+            color: #0f172a;
             margin: 0;
             font-weight: 700;
         }
@@ -436,7 +442,7 @@
             font-size: 0.65rem;
             font-weight: 800;
             padding: 4px 10px;
-            border-radius: 30px;
+            border-radius: 6px;
             letter-spacing: 0.05em;
             white-space: nowrap;
         }
@@ -449,24 +455,31 @@
         .fleet-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .fleet-tag {
             font-size: 0.75rem;
-            font-weight: 600;
-            color: #4a5568;
-            background: #f7fafc;
-            padding: 5px 12px;
-            border-radius: 8px;
-            border: 1px solid #edf2f7;
+            font-weight: 500;
+            color: #64748b;
+            background: transparent;
+            padding: 0;
+            border: none;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        
+        .fleet-tag:not(:last-child)::after {
+            content: '•';
+            margin-left: 0.5rem;
+            color: #cbd5e1;
         }
 
         .fleet-summary {
-            font-size: 0.85rem;
-            color: #718096;
+            font-size: 0.9rem;
+            color: #475569;
             line-height: 1.6;
             margin-bottom: 1.5rem;
             flex-grow: 1;
@@ -495,76 +508,89 @@
         .workflow-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.85rem;
+            gap: 2rem;
         }
 
         .workflow-step {
-            background: #fff;
-            border-radius: 16px;
-            border: 1px solid var(--home-border);
-            padding: 1.2rem;
-            box-shadow: 0 10px 22px rgba(15, 32, 53, 0.06);
+            background: transparent;
+            padding: 1rem 0;
         }
 
         .step-no {
-            width: 34px;
-            height: 34px;
-            display: grid;
-            place-items: center;
-            border-radius: 10px;
-            margin-bottom: 0.7rem;
-            font-size: 0.86rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #fff;
-            background: linear-gradient(135deg, var(--home-teal), var(--home-teal-dark));
+            color: var(--home-teal);
+            background: rgba(74, 165, 156, 0.1);
+            border: 1px solid rgba(74, 165, 156, 0.2);
         }
 
         .workflow-step h3 {
-            color: #102238;
-            font-size: 1.08rem;
-            margin-bottom: 0.35rem;
+            color: #0f172a;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
         }
 
         .workflow-step p {
-            color: var(--home-muted);
-            line-height: 1.62;
-            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.85rem;
+            gap: 1.5rem;
         }
 
         .testimonial-card-home {
-            background: #fff;
+            background: #f8fafc;
             border-radius: 16px;
-            border: 1px solid var(--home-border);
-            padding: 1.15rem;
-            box-shadow: 0 10px 22px rgba(15, 32, 53, 0.06);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card-home::before {
+            content: '\201C';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 4rem;
+            color: #e2e8f0;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
         }
 
         .testimonial-card-home .stars {
-            color: #f4a142;
-            font-size: 0.88rem;
-            margin-bottom: 0.6rem;
+            color: #fbbf24;
+            font-size: 1rem;
+            margin-bottom: 1rem;
             display: flex;
-            gap: 0.12rem;
+            gap: 0.2rem;
         }
 
         .testimonial-card-home p {
-            color: #2c4158;
-            line-height: 1.66;
-            font-size: 0.96rem;
-            margin-bottom: 0.75rem;
+            color: #334155;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .testimonial-author {
-            color: #102238;
-            font-weight: 600;
-            font-size: 0.92rem;
-            letter-spacing: 0.03em;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         .hero-whatsapp-top {
@@ -583,54 +609,82 @@
         .popular-transfers-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.85rem;
+            gap: 1rem;
         }
 
         .popular-transfer-card {
-            background: #fff;
-            border: 1px solid var(--home-border);
-            border-radius: 16px;
-            padding: 0.95rem;
-            color: #16314c;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.25rem;
+            color: #1e293b;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            font-weight: 600;
-            box-shadow: 0 10px 22px rgba(15, 32, 53, 0.06);
-            transition: transform 0.24s ease, box-shadow 0.24s ease;
+            gap: 0.85rem;
+            font-weight: 500;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03);
+            transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         .popular-transfer-card i {
-            color: var(--home-teal-dark);
+            color: var(--home-teal);
+            font-size: 1.25rem;
+            background: rgba(74, 165, 156, 0.08);
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .popular-transfer-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 24px rgba(15, 32, 53, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+            border-color: #cbd5e1;
+        }
+        
+        .popular-transfer-card:hover i {
+            background: var(--home-teal);
+            color: #ffffff;
         }
 
         .why-choose-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
         .why-choose-item {
-            background: #fff;
-            border: 1px solid var(--home-border);
-            border-radius: 14px;
-            padding: 0.9rem;
-            color: #27405b;
-            font-weight: 600;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--home-teal);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            color: #334155;
+            font-weight: 500;
             line-height: 1.5;
+            font-size: 1.05rem;
             display: flex;
-            align-items: flex-start;
-            gap: 0.55rem;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .why-choose-item:hover {
+            box-shadow: 0 6px 12px rgba(15, 23, 42, 0.05);
+            transform: translateX(4px);
         }
 
         .why-choose-item i {
-            color: #2d8f86;
-            margin-top: 0.25rem;
+            color: var(--home-teal-dark);
+            font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
         .transfer-booking {
@@ -638,55 +692,54 @@
         }
 
         .transfer-booking-wrap {
-            border-radius: 22px;
-            background:
-                radial-gradient(circle at 0% 0%, rgba(87, 179, 168, 0.24), transparent 38%),
-                radial-gradient(circle at 100% 0%, rgba(12, 43, 72, 0.14), transparent 46%),
-                #ffffff;
-            border: 1px solid var(--home-border);
-            box-shadow: 0 18px 30px rgba(15, 32, 53, 0.1);
-            padding: 1.3rem;
+            border-radius: 24px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 3.5rem;
             display: grid;
             grid-template-columns: 0.94fr 1.06fr;
-            gap: 1rem;
+            gap: 4rem;
+            align-items: center;
         }
 
         .transfer-copy h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            line-height: 1.06;
-            color: #102238;
-            margin-bottom: 0.7rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            line-height: 1.1;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .transfer-copy p {
-            color: var(--home-muted);
-            line-height: 1.72;
-            margin-bottom: 0.82rem;
+            color: #94a3b8;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .transfer-meta {
             display: grid;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .transfer-meta li {
-            color: #1f374f;
+            color: #e2e8f0;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
+            gap: 0.75rem;
         }
 
         .transfer-meta i {
-            color: var(--home-teal-dark);
+            color: var(--home-teal);
         }
 
         .transfer-form {
-            background: #fff;
-            border-radius: 16px;
-            border: 1px solid var(--home-border);
-            padding: 1rem;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .transfer-grid {
@@ -772,34 +825,38 @@
 
         .location-seo-wrap {
             border-radius: 20px;
-            border: 1px solid var(--home-border);
             background: #fff;
-            box-shadow: 0 14px 30px rgba(15, 32, 53, 0.09);
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
             overflow: hidden;
             display: grid;
             grid-template-columns: 0.95fr 1.05fr;
         }
 
         .location-seo-copy {
-            padding: 1.2rem;
-            background: linear-gradient(145deg, #0f2138 0%, #1d395a 100%);
-            color: #f4f9ff;
+            padding: 3rem;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .location-seo-copy h3 {
-            font-size: clamp(1.6rem, 3vw, 2.3rem);
-            margin-bottom: 0.55rem;
-            line-height: 1.15;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
         }
 
         .location-seo-copy p {
-            color: #d1deec;
+            color: #cbd5e1;
             line-height: 1.7;
-            margin-bottom: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
 
         .location-seo-copy .based-line {
-            color: #9de9df;
+            color: var(--home-teal);
             font-weight: 700;
             font-size: 0.95rem;
             letter-spacing: 0.05em;
@@ -964,32 +1021,35 @@
             }
 
             .why-choose-item {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-                text-align: center;
-                padding: 0.85rem 0.6rem;
-                font-size: 0.78rem;
-                justify-content: center;
-                height: 100%;
+                text-align: left;
+                padding: 1rem;
+                font-size: 0.95rem;
+                justify-content: flex-start;
             }
 
             .why-choose-item i {
-                font-size: 1.4rem;
-                margin-bottom: 0.5rem;
+                font-size: 1.3rem;
+                margin-bottom: 0;
                 margin-top: 0;
+                width: auto;
+                height: auto;
             }
 
             .popular-transfer-card {
-                padding: 0.75rem 0.6rem;
-                font-size: 0.72rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 0.4rem;
-                justify-content: center;
+                padding: 1rem;
+                font-size: 0.95rem;
+                flex-direction: row;
+                text-align: left;
+                gap: 0.75rem;
+                justify-content: flex-start;
             }
 
             .popular-transfer-card i {
                 font-size: 1.1rem;
+                width: 36px;
+                height: 36px;
             }
 
             /* Signature Journeys Slider */
@@ -1163,12 +1223,12 @@
                     <p>Tourists often book these direct routes with us. If your trip is similar, we can arrange it quickly.</p>
                 </div>
                 <div class="popular-transfers-grid">
-                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> Colombo Airport → Mirissa</a>
-                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> Colombo Airport → Ella</a>
-                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> Colombo → Sigiriya</a>
-                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> Mirissa → Yala Safari</a>
-                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> Ella → Tangalle</a>
-                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> Galle → Colombo Airport</a>
+                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> <span>Colombo Airport → Mirissa</span></a>
+                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> <span>Colombo Airport → Ella</span></a>
+                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> <span>Colombo → Sigiriya</span></a>
+                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> <span>Mirissa → Yala Safari</span></a>
+                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> <span>Ella → Tangalle</span></a>
+                    <a class="popular-transfer-card" href="#quick-booking"><i class="fas fa-car-side"></i> <span>Galle → Colombo Airport</span></a>
                 </div>
             </div>
         </section>
@@ -1181,12 +1241,12 @@
                     <p>Travelers book us because they want safety, reliability, and smooth communication from pickup to drop-off.</p>
                 </div>
                 <div class="why-choose-grid">
-                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> Friendly English-speaking driver</article>
-                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> Clean and comfortable car with AC</article>
-                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> On-time pickup guaranteed</article>
-                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> Fair and transparent prices</article>
-                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> Experienced with international travelers</article>
-                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> Flexible travel plans</article>
+                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> <span>Friendly English-speaking driver</span></article>
+                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> <span>Clean and comfortable car with AC</span></article>
+                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> <span>On-time pickup guaranteed</span></article>
+                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> <span>Fair and transparent prices</span></article>
+                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> <span>Experienced with international travelers</span></article>
+                    <article class="why-choose-item"><i class="fas fa-check-circle"></i> <span>Flexible travel plans</span></article>
                 </div>
             </div>
         </section>
